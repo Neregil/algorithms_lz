@@ -1,41 +1,42 @@
-from random import randint as ri
+from random import randint as ri #Импортирую библиотеку рандома
 
-srb=0
-srv=0
-st=[]
-for i in range(0,100):
-    st.append(ri(0,1000000))
-print(st)
+srb=0 #Количество сравнений в сортировке бабла
+srv=0 #И выборки
+st=[] #Создаю коллекцию
+for i in range(0,100): #Задаю её размер
+    st.append(ri(0,1000000)) #Заполняю её случайными числами и задаю их параметры
+print(st) #Вывод первой не отсортированной коллекции
 print()
-
-sotb=st.copy()
-g=1
-while g==1:
+print()
+print()
+sotb=st.copy() #Создаю новую коллекцию для сортировки бабла
+g=1 #Проверка на то, попал ли цикл в if
+while g==1: 
     g=0
-    for i in range(0,len(sotb)-1):
-        if sotb[i]<sotb[i+1]:
+    for i in range(0,len(sotb)-1): #Проверяю всю коллекцию
+        if sotb[i]<sotb[i+1]: #Если мой элемент меньше следующего
             s=sotb[i]
             sotb[i]=sotb[i+1]
-            sotb[i+1]=s
-            g=True
+            sotb[i+1]=s #3 строчки, меняю их местами
+            g=1 #Попал в if, продолжаю цикл
             print(sotb)
             print()
             print()
-            srb+=1
+            srb+=1 #Счётчки бабла
 
 print(sotb)
 print("Конец пузырька")
-ul = st.copy()
-sotv = []
+ul=st.copy() #Создаю новую коллекцию для сортировки выборкой
+sotv=[] #Создаю новую коллекцию для отсортированных чисел
 
-while len(ul)>0:
-    min=ul[0]
-    for i in range(0,len(ul)):
-        if ul[i]>min:
-            min=ul[i]
-        srv+=1
-    sotv.append(min)
-    ul.remove(min)
+while len(ul)>0: #Пока колическо элементов не будет равно 0, пока я буду их удалять
+    max=ul[0] #Беру 0 элемент как начало проверки
+    for i in range(0,len(ul)): 
+        if ul[i]>max: #Ищу максимальный элемент
+            max=ul[i]
+        srv+=1 #Счётчки выборки
+    sotv.append(max) #Добавляю элемент для отсортированной коллекции
+    ul.remove(max) #И удаляю этот элемент из старой
     print(ul)
     print()
     print(sotv)
